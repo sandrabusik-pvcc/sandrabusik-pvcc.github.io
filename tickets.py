@@ -18,16 +18,19 @@ total = 0
 
 #################  define program functions  ###################################
 def main():
-    more_tickets = True
-    while more_tickets:
+    promp_in = "Would you like to order again (Y or N) "
+    goodbye_msg = "Thank you for your order. Enjoy your movie!"
+    more_data = True
+
+    while more_data:
         get_user_data()
         perform_calculations()
         display_results()
 
-        yesno = input("\nWould you like to order again(Y or N)? ")
-        if yesno =="N" or yesno == "n":
-            more_tickets = False
-            print("Thank you for your order.  Enjoy your movie!")
+        yesno = input(promp_in)
+        if (yesno.upper() == "N"):
+            more_data = False
+            print(goodbye_msg)
 
 def get_user_data():
     global num_tickets
@@ -40,15 +43,22 @@ def perform_calculations():
     total = subtotal + sales_tax
 
 def display_results():
-    print('-------------------------------------')
-    print('****CINEMA HOUSE MOVIES ****')
-    print('YOUR NEIGHBORHOOD MOVIE HOUSE')
-    print('-------------------------------------')
-    print('Tickets       $ ' + format(subtotal,'8,.2f'))
-    print('Sales Tax     $ ' + format(sales_tax,'8,.2f'))
-    print('Total         $ ' + format(total,'8,.2f'))
-    print('-------------------------------------')
-    print(str(datetime.datetime.now()))
-
-#################  call on main program to execute #############################
+    line = '-------------------------------------'
+    currency = '8,.2f'
+    date = str(datetime.datetime.now())
+    title1 = '****CINEMA HOUSE MOVIES ****'
+    title2 = 'YOUR NEIGHBORHOOD MOVIE HOUSE'
+    
+    print(line)
+    print(title1)
+    print(title2)
+    print(date)
+    print(line)
+    print('Tickets        $ ' + format(subtotal, currency ))
+    print('Sales Tax      $ ' + format(sales_tax, currency ))
+    print('Tickets        $ ' + format(total, currency ))
+    print('Total          $ ' + format(subtotal, currency ))
+    print(line)
+    
+    #################  call on main program to execute #############################
 main()
